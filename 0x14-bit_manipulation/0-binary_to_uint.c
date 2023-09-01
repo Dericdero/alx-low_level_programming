@@ -1,3 +1,4 @@
+#include "main.h"
 #include <stdio.h>
 
 /**
@@ -17,9 +18,8 @@ return (0);
 
 for (i = 0; b[i]; i++)
 {
-(b[i] < '0' || b[i] > '1')
+if (b[i] < '0' || b[i] > '1')
 return (0);
-
 dec_val = 2 * dec_val + (b[i] - '0');
 }
 
