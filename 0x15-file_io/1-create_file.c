@@ -6,37 +6,26 @@
  * @text_content: pointer to string to be written in the file
  * Return: -1 if function fails, otherwise return 1
  */
-
 int create_file(const char *filename, char *text_content)
 {
-	if (filename == NULL)
-	{
-		return (-1);
-	}
-	int fd = open(filename, O_CREAT|O_RDWR|O_TRUNC,0600);
+	int fd, words, len = 0;
 
-	if (fd == -1)
-	{
+	if (filename == NULL)
 		return (-1);
-	}
 
 	if (text_content != NULL)
 	{
-		size_t length = 0;
-
-		while (text_content[length] != '\0')
-		{
-			length++;
-		}
-
-		ssize_t words = write(fd, text_content, length);
-
-		if (words == -1)
-		{
-			close(fd);
-			return (-1);
-		}
+		for (len = 0; text_content[len];)
+			len++;
 	}
+
+	fd = open(filename, O_CREAT | O_RDWR | O_TRUNC, 0600);
+	words = write(fd, text_content, len);
+
+	if (fd == -1 || words == -1)
+		return (-1);
+
 	close(fd);
+
 	return (1);
 }
