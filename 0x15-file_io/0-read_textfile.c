@@ -9,44 +9,20 @@
 
 ssize_t read_textfile(const char *filename, size_t letters)
 {
-	if (filename == NULL)
-	{
-		return (0);
-	}
-	int fd = open(filename, O_RDONLY);
+	char *buff;
+	ssize_t fd;
+	ssize_t words;
+	ssize_t t;
 
+	fd = open(filename, O_RDONLY);
 	if (fd == -1)
-	{
 		return (0);
-	}
-	char *buff = (char *)malloc(sizeof(char) * (letters + 1));
+	buff = malloc(sizeof(char) * letters);
+	t = read(fd, buff, letters);
+	words = write(STDOUT_FILENO, buff, t);
 
-	if (buffer == NULL)
-	{
-		close(fd);
-		return (0);
-	}
-
-	ssize_t words = read(fd, buff, letters);
-
-	if (words == -1)
-	{
-		close(fd);
-		free(buff);
-		return (0);
-	}
-
-	buff[words] = '\0';
-
-	ssize_t wordings = write(STDOUT_FILENO, buff, words);
-
-	if (wordings == -1 || (size_t)wordings != words)
-	{
-		close(fd);
-		free(buff);
-		return (0);
-	}
-	close(fd);
 	free(buff);
+	close(fd);
 	return (words);
 }
+
