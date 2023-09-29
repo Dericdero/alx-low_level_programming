@@ -14,7 +14,8 @@ int leading_zeros = 1;
 
 while (num > 0)
 {
-if (n & num)
+
+  if (n & num)
 {
 putchar('1');
 leading_zeros = 0;
