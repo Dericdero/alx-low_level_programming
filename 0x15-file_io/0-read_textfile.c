@@ -5,6 +5,7 @@
  * read_textfile - reads a textfile and printd it onto the POSIX stdout.
  * @filename: textfile being read
  * @letters: no of letters to be read
+ *
  * Return: the number of letters read and prinnted
  */
 
