@@ -10,6 +10,7 @@
 void print_binary(unsigned long int n)
 {
 unsigned long int num = 1UL << (sizeof(unsigned long int) * 8 - 1);
+
 int leading_zeros = 1;
 
 while (num > 0)
